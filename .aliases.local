@@ -1,0 +1,10 @@
+# development
+alias devb="cd /Users/abunashir/Dropbox/development"
+alias devo="cd /Users/abunashir/Dropbox/development/opensource"
+alias devr="cd /Users/abunashir/Dropbox/development/ruby"
+alias devt="/Users/abunashir/Dropbox/development/tools"
+
+
+# ruby
+alias be="bundle exec"
+alias bspec="bundle exec rspec"
