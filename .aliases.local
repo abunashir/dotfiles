@@ -8,3 +8,8 @@ alias devt="/Users/abunashir/Dropbox/development/tools"
 # ruby
 alias be="bundle exec"
 alias bspec="bundle exec rspec"
+
+# current project
+alias cdn="cd /Users/abunashir/Dropbox/development/ruby/canadiandiscountnetwork"
+alias asi="cd /Users/abunashir/Dropbox/development/ruby/allianceservices"
+alias se="cd /Users/abunashir/Dropbox/development/ruby/saverexpress"
