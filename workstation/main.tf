@@ -2,7 +2,7 @@ terraform {
   required_providers {
     digitalocean = {
       source = "digitalocean/digitalocean"
-      version = "2.3.0"
+      version = "2.6.0"
     }
   }
 }
@@ -12,10 +12,10 @@ provider "digitalocean" {}
 resource "digitalocean_droplet" "development" {
   region    = "fra1"
   ipv6      = true
-  ssh_keys  = [3688634]
+  ssh_keys  = [29367970, 22187648, 3688634]
   name      = "development"
   size      = "s-2vcpu-4gb"
-  image     = "ubuntu-18-04-x64"
+  image     = "ubuntu-20-04-x64"
 
   provisioner "file" {
     source      = "bootstrap.sh"
@@ -45,7 +45,7 @@ resource "digitalocean_droplet" "development" {
 }
 
 resource "digitalocean_firewall" "development" {
-  name = "ssh-and-http-only"
+  name = "ssh-and-http-https-only"
   droplet_ids = [digitalocean_droplet.development.id]
 
   inbound_rule {
@@ -56,7 +56,7 @@ resource "digitalocean_firewall" "development" {
 
   inbound_rule {
     protocol         = "tcp"
-    port_range       = "80"
+    port_range       = "1-65535"
     source_addresses = ["0.0.0.0/0", "::/0"]
   }
 

@@ -9,7 +9,7 @@ if [ "${UPGRADE_PACKAGES}" != "none" ]; then
   echo "==> Updating and upgrading packages ..."
 
   # Add third party repositories
-  sudo add-apt-repository -y ppa:martin-frost/thoughtbot-rcm
+  # sudo add-apt-repository -y ppa:martin-frost/thoughtbot-rcm
   sudo add-apt-repository ppa:jonathonf/vim -y
 
   sudo apt-get update
@@ -49,6 +49,7 @@ append_to_zshrc 'export PATH="$HOME/.bin:$PATH"'
 
 fancy_echo  "Installing basic packages"
 sudo apt-get install -qq -y \
+  automake \
   build-essential \
   ca-certificates \
   clang \
@@ -131,12 +132,18 @@ fancy_echo "Installing latest Ruby ..."
 install_asdf_language "ruby"
 gem update --system
 
+fancy_echo "Install latest Python"
+install_asdf_language "python"
+
+fancy_echo "Install latest Java"
+install_asdf_language "java"
+
 echo "Copying over dotfiles"
 git clone https://github.com/thoughtbot/dotfiles
 git clone https://github.com/abunashir/dotfiles local-dotfiles
 
 fancy_echo "Install dotfiles"
-# cp ~/.zshrc ~/.zshrc.local
+cp ~/.zshrc ~/.zshrc.local
 # cd ~/dotfiles && env RCRC=$HOME/dotfiles/rcrc rcup
 # cd ~/local-dotfiles && cp .**.local  ~/
 
