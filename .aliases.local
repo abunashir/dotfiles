@@ -1,8 +1,13 @@
-# alias
-alias git=hub
-alias c="cd [code directory]"
+# directory aliases
+alias c="cd /Users/abunashir/workspace"
+alias w="cd /Users/abunashir/workspace"
 
 # digital ocean cli
 alias dlist="doctl compute droplet list"
 alias ddelete="doctl compute droplet delete"
-alias dcreate="doctl compute droplet create --image=[IMAGE/SNAPSHOT_ID] --region [REGION] --size s-2vcpu-4gb"
+
+# Source file
+alias sz="source ~/.zshrc"
+
+# Rails in docker
+alias rails-in-docker="docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 ghcr.io/rails/cli"

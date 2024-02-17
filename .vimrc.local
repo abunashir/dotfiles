@@ -3,3 +3,6 @@ set relativenumber
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+"Shortcut to Toggle ALE
+nnoremap <Leader>at :ALEToggle<CR>
