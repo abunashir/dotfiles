@@ -1,4 +1,4 @@
 # In Codespaces, replace the verbose SSH user@hostname with a short indicator
 if [[ -n "$CODESPACES" ]]; then
-  PS1="%{$fg[cyan]%}cs:%{$reset_color%}%{$fg_bold[blue]%}%c%{$reset_color%}$(git_prompt_info) %# "
+  PS1='%{$fg[cyan]%}cs:%{$reset_color%}%{$fg_bold[blue]%}%c%{$reset_color%}$(git_prompt_info) %# '
 fi

@@ -72,4 +72,6 @@ if [ "$SHELL" != "$(which zsh)" ]; then
   sudo chsh -s "$(which zsh)" "$USER"
 fi
 
+echo "set-option -g default-shell $(which zsh)" >> "$HOME/.tmux.conf.local"
+
 fancy_echo "Done!"
