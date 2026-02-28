@@ -60,10 +60,8 @@ vim -es -u "$HOME/.vimrc" -i NONE +PlugInstall +qall || true
 # Claude Code
 # ---------------------------------------------------------------------------
 
-if command -v npm &>/dev/null; then
-  fancy_echo "Installing Claude Code..."
-  npm install -g @anthropic-ai/claude-code --silent
-fi
+fancy_echo "Installing Claude Code..."
+curl -fsSL https://claude.ai/install.sh | bash
 
 # ---------------------------------------------------------------------------
 # Default shell
