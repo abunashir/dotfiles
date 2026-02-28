@@ -1,6 +1,11 @@
 # directory aliases
-alias c="cd /Users/abunashir/workspace"
-alias w="cd /Users/abunashir/workspace"
+if [[ -n "$CODESPACES" ]]; then
+  alias w="cd /workspaces"
+  alias c="cd /workspaces"
+else
+  alias w="cd $HOME/workspace"
+  alias c="cd $HOME/workspace"
+fi
 
 # digital ocean cli
 alias dlist="doctl compute droplet list"
