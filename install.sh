@@ -43,7 +43,10 @@ fancy_echo "Patching thoughtbot dotfiles for Linux..."
 sed -i 's|eval "\$(/opt/homebrew/bin/brew shellenv)"|[ -x /opt/homebrew/bin/brew ] \&\& eval "$(/opt/homebrew/bin/brew shellenv)"|' "$THOUGHTBOT_DIR/zshrc"
 
 fancy_echo "Running rcup..."
-env RCRC="$THOUGHTBOT_DIR/rcrc" rcup -d "$THOUGHTBOT_DIR" -d "$PERSONAL_DIR" -f
+env RCRC="$THOUGHTBOT_DIR/rcrc" rcup -d "$THOUGHTBOT_DIR" -f
+
+fancy_echo "Copying personal dotfiles..."
+cp "$PERSONAL_DIR"/.*.local "$HOME/"
 
 # ---------------------------------------------------------------------------
 # vim-plug + plugins
