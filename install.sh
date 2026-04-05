@@ -63,6 +63,10 @@ vim -es -u "$HOME/.vimrc" -i NONE +PlugInstall +qall || true
 fancy_echo "Installing Claude Code..."
 curl -fsSL https://claude.ai/install.sh | bash
 
+fancy_echo "Setting up Claude global skills..."
+mkdir -p "$HOME/.claude"
+ln -sf "$SCRIPT_DIR/claude/commands" "$HOME/.claude/commands"
+
 # ---------------------------------------------------------------------------
 # Default shell
 # ---------------------------------------------------------------------------
