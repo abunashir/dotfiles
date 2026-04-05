@@ -5,8 +5,8 @@
 
 set -e
 
-DOTFILES_DIR="$HOME/dotfiles"
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+THOUGHTBOT_DIR="$HOME/thoughtbot-dotfiles"
+PERSONAL_DIR="$HOME/dotfiles"
 
 fancy_echo() {
   printf "\n==> %s\n" "$1"
@@ -22,26 +22,28 @@ sudo apt-get update -qq
 sudo apt-get install -qq -y zsh tmux vim curl git rcm
 
 # ---------------------------------------------------------------------------
+# Personal dotfiles
+# ---------------------------------------------------------------------------
+
+if [ ! -d "$PERSONAL_DIR" ]; then
+  fancy_echo "Cloning personal dotfiles..."
+  git clone https://github.com/abunashir/dotfiles.git "$PERSONAL_DIR"
+fi
+
+# ---------------------------------------------------------------------------
 # thoughtbot/dotfiles
 # ---------------------------------------------------------------------------
 
-if [ ! -d "$DOTFILES_DIR" ]; then
+if [ ! -d "$THOUGHTBOT_DIR" ]; then
   fancy_echo "Cloning thoughtbot/dotfiles..."
-  git clone https://github.com/thoughtbot/dotfiles "$DOTFILES_DIR"
+  git clone https://github.com/thoughtbot/dotfiles "$THOUGHTBOT_DIR"
 fi
 
 fancy_echo "Patching thoughtbot dotfiles for Linux..."
-sed -i 's|eval "\$(/opt/homebrew/bin/brew shellenv)"|[ -x /opt/homebrew/bin/brew ] \&\& eval "$(/opt/homebrew/bin/brew shellenv)"|' "$DOTFILES_DIR/zshrc"
+sed -i 's|eval "\$(/opt/homebrew/bin/brew shellenv)"|[ -x /opt/homebrew/bin/brew ] \&\& eval "$(/opt/homebrew/bin/brew shellenv)"|' "$THOUGHTBOT_DIR/zshrc"
 
 fancy_echo "Running rcup..."
-env RCRC="$DOTFILES_DIR/rcrc" rcup -d "$DOTFILES_DIR" -f
-
-# ---------------------------------------------------------------------------
-# Personal .local overrides
-# ---------------------------------------------------------------------------
-
-fancy_echo "Copying personal dotfiles..."
-cp "$SCRIPT_DIR"/.*.local "$HOME/"
+env RCRC="$THOUGHTBOT_DIR/rcrc" rcup -d "$THOUGHTBOT_DIR" -d "$PERSONAL_DIR" -f
 
 # ---------------------------------------------------------------------------
 # vim-plug + plugins
@@ -65,7 +67,7 @@ curl -fsSL https://claude.ai/install.sh | bash
 
 fancy_echo "Setting up Claude global skills..."
 mkdir -p "$HOME/.claude"
-ln -sf "$SCRIPT_DIR/claude/commands" "$HOME/.claude/commands"
+ln -sf "$PERSONAL_DIR/claude/commands" "$HOME/.claude/commands"
 
 # ---------------------------------------------------------------------------
 # Default shell
